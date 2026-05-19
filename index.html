@@ -1,37 +1,976 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Keyur Mistry - Resume</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keyur Mistry — Flutter Developer</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --ink: #1a1a1a;
+      --ink-soft: #4a4a4a;
+      --ink-muted: #7a7a7a;
+      --accent: #1d4ed8;
+      --accent-light: #dbeafe;
+      --accent-mid: #93c5fd;
+      --rule: #e2e2e2;
+      --surface: #f8f7f4;
+      --white: #ffffff;
+      --tag-bg: #f0f4ff;
+      --tag-text: #1d4ed8;
+      --green: #064e3b;
+      --green-bg: #d1fae5;
+      --green-dot: #10b981;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--surface);
+      color: var(--ink);
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      background: white;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      background: var(--ink);
+      color: var(--white);
+      padding: 3rem 3rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      border: 40px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      right: 120px;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      border: 30px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 2rem;
+    }
+
+    .name-block h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 3rem;
+      font-weight: 400;
+      letter-spacing: -0.5px;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      color: var(--white);
+    }
+
+    .title-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(29, 78, 216, 0.9);
+      color: #bfdbfe;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 100px;
+      margin-top: 0.75rem;
+    }
+
+    .live-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #4ade80;
+      animation: pulse 2s infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.6;
+        transform: scale(0.8);
+      }
+    }
+
+    .contact-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: flex-end;
+      font-size: 0.82rem;
+      color: rgba(255, 255, 255, 0.7);
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-grid a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      transition: color 0.2s;
+    }
+
+    .contact-grid a:hover {
+      color: #93c5fd;
+    }
+
+    .contact-grid i {
+      font-size: 0.8rem;
+      width: 14px;
+    }
+
+    .header-tagline {
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.55);
+      max-width: 520px;
+      line-height: 1.7;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 1.25rem;
+    }
+
+    .header-tagline strong {
+      color: rgba(255, 255, 255, 0.85);
+      font-weight: 500;
+    }
+
+    /* ── LAYOUT ── */
+    .body {
+      display: grid;
+      grid-template-columns: 1fr 260px;
+      min-height: 0;
+    }
+
+    .main-col {
+      padding: 2.5rem 2.5rem 2.5rem 3rem;
+      border-right: 1px solid var(--rule);
+    }
+
+    .side-col {
+      padding: 2.5rem 2rem 2.5rem 2rem;
+      background: var(--surface);
+    }
+
+    /* ── SECTION ── */
+    .section {
+      margin-bottom: 2.5rem;
+    }
+
+    .section:last-child {
+      margin-bottom: 0;
+    }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.25rem;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    /* ── EXPERIENCE CARD ── */
+    .exp-card {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: 0;
+    }
+
+    .exp-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-light);
+    }
+
+    .exp-card::after {
+      content: '';
+      position: absolute;
+      left: 3.5px;
+      top: 22px;
+      width: 1px;
+      height: calc(100% + 12px);
+      background: var(--rule);
+    }
+
+    .exp-card:last-child::after {
+      display: none;
+    }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 2px;
+    }
+
+    .exp-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .exp-company {
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      margin-bottom: 6px;
+    }
+
+    .exp-company span {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .date-badge {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--ink-muted);
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      padding: 3px 10px;
+      border-radius: 100px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .exp-bullets {
+      list-style: none;
+      margin-top: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-bottom: 1.5rem;
+    }
+
+    .exp-bullets li {
+      font-size: 0.83rem;
+      color: var(--ink-soft);
+      padding-left: 1rem;
+      position: relative;
+      line-height: 1.55;
+    }
+
+    .exp-bullets li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent-mid);
+      font-size: 0.75rem;
+      top: 1px;
+    }
+
+    /* ── PROJECT CARD ── */
+    .project-card {
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      padding: 1.1rem 1.25rem;
+      margin-bottom: 1rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+
+    .project-card:hover {
+      border-color: var(--accent-mid);
+      box-shadow: 0 2px 16px rgba(29, 78, 216, 0.07);
+    }
+
+    .project-card.featured {
+      border-color: var(--accent);
+      background: linear-gradient(135deg, #f0f7ff 0%, #ffffff 60%);
+    }
+
+    .featured-badge {
+      position: absolute;
+      top: -1px;
+      right: 14px;
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      background: var(--accent);
+      color: white;
+      padding: 3px 10px;
+      border-radius: 0 0 6px 6px;
+    }
+
+    .project-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.5rem;
+      margin-bottom: 4px;
+    }
+
+    .project-name {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .project-links {
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .project-links a {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      text-decoration: none;
+      padding: 3px 9px;
+      border-radius: 100px;
+      border: 1px solid var(--rule);
+      color: var(--ink-soft);
+      transition: all 0.2s;
+    }
+
+    .project-links a:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+    }
+
+    .project-links a.store {
+      background: var(--green-bg);
+      border-color: var(--green-bg);
+      color: var(--green);
+    }
+
+    .project-links a.store:hover {
+      background: var(--green);
+      border-color: var(--green);
+      color: white;
+    }
+
+    .project-stack {
+      font-size: 0.74rem;
+      color: var(--ink-muted);
+      margin-bottom: 7px;
+      font-weight: 400;
+    }
+
+    .project-desc {
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      margin-bottom: 8px;
+      line-height: 1.55;
+    }
+
+    .project-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .project-bullets li {
+      font-size: 0.79rem;
+      color: var(--ink-muted);
+      padding-left: 1rem;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .project-bullets li::before {
+      content: '·';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* ── SIDE COLUMN ── */
+    .side-section {
+      margin-bottom: 2rem;
+    }
+
+    .side-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .side-label {
+      font-size: 0.66rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    /* Skills */
+    .skill-group {
+      margin-bottom: 1rem;
+    }
+
+    .skill-group-name {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--ink-soft);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .skill-tag {
+      font-size: 0.74rem;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      padding: 3px 9px;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    .skill-tag.neutral {
+      background: #f3f4f6;
+      color: var(--ink-soft);
+    }
+
+    /* Education */
+    .edu-item {
+      margin-bottom: 1rem;
+    }
+
+    .edu-degree {
+      font-size: 0.83rem;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.3;
+      margin-bottom: 2px;
+    }
+
+    .edu-uni {
+      font-size: 0.76rem;
+      color: var(--ink-soft);
+      margin-bottom: 2px;
+    }
+
+    .edu-date {
+      font-size: 0.71rem;
+      color: var(--ink-muted);
+    }
+
+    /* Certifications */
+    .cert-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin-bottom: 0.85rem;
+    }
+
+    .cert-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.8rem;
+    }
+
+    .cert-icon.udemy {
+      background: #fde68a;
+      color: #92400e;
+    }
+
+    .cert-icon.coursera {
+      background: #dbeafe;
+      color: #1d4ed8;
+    }
+
+    .cert-text {
+      flex: 1;
+    }
+
+    .cert-name {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.3;
+      margin-bottom: 1px;
+    }
+
+    .cert-provider {
+      font-size: 0.71rem;
+      color: var(--ink-muted);
+    }
+
+    .cert-link {
+      font-size: 0.68rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    /* Divider */
+    .side-divider {
+      height: 1px;
+      background: var(--rule);
+      margin: 1.5rem 0;
+    }
+
+    /* ── FOOTER ── */
+    .resume-footer {
+      background: var(--ink);
+      padding: 1rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .resume-footer p {
+      font-size: 0.72rem;
+      color: rgba(255, 255, 255, 0.35);
+      letter-spacing: 0.5px;
+    }
+
+    .print-btn {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: rgba(255, 255, 255, 0.6);
+      background: none;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 5px 14px;
+      border-radius: 100px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .print-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+
+    @media print {
+
+      @page {
+        size: A4 portrait;
+        margin: 8mm 10mm;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: white;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .page {
+        width: 100%;
+        min-height: 0;
+        box-shadow: none !important;
+        transform: scale(0.94);
+        transform-origin: top center;
+      }
+
+      .resume-footer,
+      .print-btn {
+        display: none !important;
+      }
+
+      /* Allow natural page breaks, but avoid breaking INSIDE individual cards */
+      .project-card,
+      .exp-card,
+      .cert-item,
+      .edu-item {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <div class="container">
-    <div class="left-section">
-      <img src="keyur.jpg" alt="Keyur Mistry" class="profile-img" />
-      <h1>Keyur Mistry<br></h1>
-      <a href="mailto:keyurmistry334@gmail.com" class="btn">Email me</a>
-      <div class="social-icons">
-        <a href="https://www.instagram.com/keyur_369?igsh=cm4wYWlmMmV1ank5"><i class="fab fa-instagram"></i></a>
-        <a href="https://x.com/Keyurnotonline?t=NO4zL4Rh3ORgFk0LOgUrFA&s=09"><i class="fab fa-twitter"></i></a>
-        <a href="https://www.linkedin.com/in/keyur-mistry-61308a351?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i class="fab fa-linkedin"></i></a>
+
+  <div class="page">
+
+    <!-- HEADER -->
+    <header class="header">
+      <div class="header-top">
+        <div class="name-block">
+          <h1>Keyur Mistry</h1>
+          <div class="title-pill">
+            <span class="live-dot"></span>
+            Flutter Developer
+          </div>
+        </div>
+        <div class="contact-grid">
+          <a href="tel:+918866517763"><i class="fa fa-phone"></i> +91 88665 17763</a>
+          <a href="mailto:keyurmistry334@gmail.com"><i class="fa fa-envelope"></i> keyurmistry334@gmail.com</a>
+          <a href="https://linkedin.com/in/keyur-mistry-61308a351" target="_blank"><i class="fa-brands fa-linkedin"></i>
+            keyur-mistry</a>
+          <a href="https://github.com/keyur-369" target="_blank"><i class="fa-brands fa-github"></i> keyur-369</a>
+        </div>
       </div>
-    </div>
-    <div class="right-section">
-      <h2>About Me</h2>
-      <p>
-        I'm Keyur Mistry, a BCA graduate currently pursuing my MSc in IT at Charusat. I'm skilled in front-end development and Android app development using Flutter. I’m passionate about creating user-friendly experiences and love exploring new technologies. Let’s connect!
+      <p class="header-tagline">
+        MSc IT student at <strong>CHARUSAT</strong> with hands-on expertise in <strong>Flutter, Dart, Firebase &
+          MySQL</strong>. Passionate about building scalable, user-centric mobile apps — <strong>published on Google
+          Play Store</strong>. Seeking an opportunity to grow as a professional software developer.
       </p>
-      <div class="buttons">
-        <a href="resume.html" class="btn">Resume</a>
-       <!--<a href="#" class="btn">Portfolio</a> -->
-      </div>
+    </header>
+
+    <!-- BODY -->
+    <div class="body">
+
+      <!-- MAIN -->
+      <main class="main-col">
+
+        <!-- EXPERIENCE -->
+        <section class="section">
+          <div class="section-label">Work Experience</div>
+
+          <div class="exp-card">
+            <div class="exp-header">
+              <div>
+                <div class="exp-title">Flutter Developer Intern</div>
+                <div class="exp-company"><span>Patrixel</span> &nbsp;·&nbsp; Remote</div>
+              </div>
+              <div class="date-badge">Dec 2025 – Present</div>
+            </div>
+            <ul class="exp-bullets">
+              <li>Developing and maintaining cross-platform mobile apps using Flutter and Dart.</li>
+              <li>Converting UI/UX designs into responsive, pixel-accurate screens.</li>
+              <li>Integrating REST APIs, third-party plugins, and backend services.</li>
+              <li>Debugging, performance optimization, and peer code reviews.</li>
+              <li>Staying current with latest Flutter updates and best practices.</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- PROJECTS -->
+        <section class="section">
+          <div class="section-label">Projects</div>
+          <!-- Split Expenses -->
+          <div class="project-card featured">
+            <div class="featured-badge">Live on Play Store</div>
+
+            <div class="project-top">
+              <div class="project-name">Split Expenses</div>
+
+              <div class="project-links">
+                <a href="https://github.com/keyur-369/split_expenses" target="_blank">
+                  <i class="fa-brands fa-github"></i> Code
+                </a>
+
+                <a href="https://play.google.com/store/apps/details?id=com.keyur369.split_expenses" target="_blank"
+                  class="store">
+                  <i class="fa-brands fa-google-play"></i> Play Store
+                </a>
+              </div>
+            </div>
+
+            <div class="project-stack">
+              Flutter · Firebase · Firestore · FCM
+            </div>
+
+            <div class="project-desc">
+              Smart expense-sharing app for friends, roommates, and travel groups with real-time payment reminders.
+            </div>
+
+            <ul class="project-bullets">
+              <li>Developed and published a Flutter app on Google Play Store.</li>
+              <li>Implemented group expense tracking and bill splitting.</li>
+              <li>Integrated Firebase Cloud Messaging for payment reminders.</li>
+            </ul>
+          </div>
+          <!-- CampusQuest -->
+          <div class="project-card">
+            <div class="project-top">
+              <div class="project-name">CampusQuest</div>
+              <div class="project-links">
+                <a href="https://github.com/369KeYuRmIsTrY/campusquest" target="_blank">
+                  <i class="fa-brands fa-github"></i> Code
+                </a>
+              </div>
+            </div>
+            <div class="project-stack">Flutter · Dart · Supabase</div>
+            <div class="project-desc">Campus management app streamlining academic and administrative workflows for
+              students and instructors.</div>
+            <ul class="project-bullets">
+              <li>Secure authentication and role-based access control using Supabase.</li>
+              <li>Cloud file uploads and database management for academic records.</li>
+              <li>Modular architecture for code reusability and long-term maintainability.</li>
+            </ul>
+          </div>
+          <!-- InvoiceHub -->
+          <div class="project-card">
+            <div class="project-top">
+              <div class="project-name">InvoiceHub</div>
+              <div class="project-links">
+                <a href="https://github.com/keyur-369" target="_blank">
+                  <i class="fa-brands fa-github"></i> Code
+                </a>
+              </div>
+            </div>
+            <div class="project-stack">Flutter · Dart · Supabase · State Management</div>
+            <div class="project-desc">Professional invoice management app for creating, tracking, and managing business
+              invoices with a clean, role-based workflow.</div>
+            <ul class="project-bullets">
+              <li>Full invoice lifecycle management — create, edit, send, and track payment status.</li>
+              <li>Supabase backend for real-time data sync and secure authentication.</li>
+
+            </ul>
+          </div>
+
+          <!-- MCQ Pro -->
+          <div class="project-card">
+            <div class="project-top">
+              <div class="project-name">MCQ Pro</div>
+              <div class="project-links">
+                <a href="https://github.com/keyur-369" target="_blank">
+                  <i class="fa-brands fa-github"></i> Code
+                </a>
+              </div>
+            </div>
+            <div class="project-stack">Flutter · Dart · Firebase</div>
+            <div class="project-desc">Comprehensive MCQ-based learning platform with multi-subject quiz support,
+              progress tracking, and a clean study-focused UI.</div>
+            <ul class="project-bullets">
+              <li>Subject-wise question banks with timed quiz sessions and instant result analysis.</li>
+              <li>Score history and performance analytics to track improvement over time.</li>
+              <li>Modular Flutter architecture enabling easy addition of new subjects and features.</li>
+            </ul>
+          </div>
+
+        </section>
+      </main>
+
+      <!-- SIDEBAR -->
+      <aside class="side-col">
+
+        <!-- SKILLS -->
+        <div class="side-section">
+          <span class="side-label">Technical Skills</span>
+
+          <div class="skill-group">
+            <div class="skill-group-name">Mobile</div>
+            <div class="skill-tags">
+              <span class="skill-tag">Flutter</span>
+              <span class="skill-tag">Dart</span>
+              <span class="skill-tag">Responsive UI</span>
+              <span class="skill-tag">State Management</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <div class="skill-group-name">Backend & DB</div>
+            <div class="skill-tags">
+              <span class="skill-tag">Firebase</span>
+              <span class="skill-tag">Firestore</span>
+              <span class="skill-tag">Supabase</span>
+              <span class="skill-tag">MySQL</span>
+              <span class="skill-tag">PHP (PDO)</span>
+              <span class="skill-tag">Node.js</span>
+              <span class="skill-tag">MongoDB</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <div class="skill-group-name">API & Auth</div>
+            <div class="skill-tags">
+              <span class="skill-tag">REST API</span>
+              <span class="skill-tag">JSON</span>
+              <span class="skill-tag">JWT</span>
+              <span class="skill-tag">OTP Auth</span>
+              <span class="skill-tag">FCM</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <div class="skill-group-name">Languages</div>
+            <div class="skill-tags">
+              <span class="skill-tag neutral">Python</span>
+              <span class="skill-tag neutral">C++</span>
+              <span class="skill-tag neutral">JavaScript</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <div class="skill-group-name">Web</div>
+            <div class="skill-tags">
+              <span class="skill-tag neutral">HTML5</span>
+              <span class="skill-tag neutral">CSS3</span>
+              <span class="skill-tag neutral">Bootstrap</span>
+              <span class="skill-tag neutral">jQuery</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <div class="skill-group-name">Tools & Deployment</div>
+            <div class="skill-tags">
+              <span class="skill-tag neutral">Git / GitHub</span>
+              <span class="skill-tag neutral">VS Code</span>
+              <span class="skill-tag neutral">Postman</span>
+              <span class="skill-tag neutral">Figma</span>
+              <span class="skill-tag neutral">Play Store</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="side-divider"></div>
+
+        <!-- EDUCATION -->
+        <div class="side-section">
+          <span class="side-label">Education</span>
+
+          <div class="edu-item">
+            <div class="edu-degree">MSc Information Technology</div>
+            <div class="edu-uni">CHARUSAT University</div>
+            <div class="edu-date">Aug 2024 – Present</div>
+          </div>
+
+          <div class="edu-item">
+            <div class="edu-degree">Bachelor of Computer Applications</div>
+            <div class="edu-uni">S. S. Agrawal College, Navsari</div>
+            <div class="edu-date">Aug 2021 – 2024</div>
+          </div>
+
+          <div class="edu-item">
+            <div class="edu-degree">Class XII — Gujarat Board</div>
+            <div class="edu-uni">Divine Public School, Navsari</div>
+            <div class="edu-date">Jul 2020 – May 2021</div>
+          </div>
+        </div>
+
+        <div class="side-divider"></div>
+
+        <!-- CERTIFICATIONS -->
+        <div class="side-section">
+          <span class="side-label">Certifications</span>
+
+          <div class="cert-item">
+            <div class="cert-icon udemy"><i class="fa-solid fa-graduation-cap"></i></div>
+            <div class="cert-text">
+              <div class="cert-name">Flutter & Dart – Complete App Development</div>
+              <div class="cert-provider">Udemy</div>
+              <a href="https://www.udemy.com/certificate/UC-d91a2e3c-b51c-4b27-a033-eba1e1044620/" target="_blank"
+                class="cert-link">
+                View certificate <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.6rem"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="cert-item">
+            <div class="cert-icon coursera"><i class="fa-solid fa-robot"></i></div>
+            <div class="cert-text">
+              <div class="cert-name">Prompt Engineering for ChatGPT</div>
+              <div class="cert-provider">Coursera</div>
+              <a href="https://www.coursera.org/account/accomplishments/verify/YRRRZUDFH4AA" target="_blank"
+                class="cert-link">
+                View certificate <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.6rem"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="cert-item">
+            <div class="cert-icon udemy"><i class="fa-brands fa-python"></i></div>
+            <div class="cert-text">
+              <div class="cert-name">Python Basics</div>
+              <div class="cert-provider">Udemy</div>
+              <a href="https://www.udemy.com/certificate/UC-5ad4a0d2-df09-414f-b98a-17e38c2abf8c/" target="_blank"
+                class="cert-link">
+                View certificate <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.6rem"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </aside>
     </div>
+
+    <!-- FOOTER -->
+    <footer class="resume-footer">
+      <p>Keyur Mistry · Flutter Developer · 2025</p>
+      <button class="print-btn" onclick="window.print()">
+        <i class="fa-solid fa-print"></i> Print / Save PDF
+      </button>
+    </footer>
+
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
+
 </html>
